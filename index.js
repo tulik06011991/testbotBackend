@@ -10,6 +10,9 @@ const users = require('./Routes/UserRoutes')
 const path = require('path')
 
 
+console.log(__dirname)
+
+
 const app = express();
 app.use(express.json());
 app.use(cors(
@@ -26,7 +29,9 @@ app.use('/questions', adminQueistion)
 app.use('/test', testUser);
 app.use('/foydalanuvchi', users);
 
+app.use(express.static(path.join(__dirname, '/frontend/dist')))
 
+app.get('*', (req, res) =>res.sendFile(__dirname, '/frontend/dist/index.html'))
 
 mongoose.connect(process.env.MONGO_URL)
   .then(() => console.log('MongoDBga muvaffaqiyatli ulanish'))

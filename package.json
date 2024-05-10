@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+<<<<<<< HEAD
+    "build": "npm install"
+=======
+    "build": "npm install --prefix ./frontend && npm run build --prefix ./frontend && npm install"
+>>>>>>> 07c0888353aaa89da8eb38b5805ce40c9e305b1a
   },
   "keywords": [],
   "author": "",
