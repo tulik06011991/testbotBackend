@@ -23,9 +23,10 @@ app.use((req, res, next) => {
   next();
 });
 app.use(cors({
-  origin: ['https://main--singular-pastelito-b428f6.netlify.app', 'http://localhost:5173'],
+  origin: '*',
   methods: ['GET', 'POST' ,'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: '*'
 }));
 
 
