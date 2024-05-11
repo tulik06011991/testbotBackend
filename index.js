@@ -15,9 +15,14 @@ const path = require('path')
 
 const app = express();
 app.use(express.json());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://testbotfrontend-2.onrender.com");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 app.use(cors(
   {
-      origin: "http://localhost:5173" || "https://testbotbackend-8.onrender.com",
+      origin: "http://localhost:5173",
       credentials: true
   }
 ))
@@ -29,11 +34,6 @@ app.use('/questions', adminQueistion)
 app.use('/test', testUser);
 app.use('/foydalanuvchi', users);
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://testbotfrontend-2.onrender.com");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
 
 // app.use(express.static(path.join(__dirname, '/frontend/dist')))
