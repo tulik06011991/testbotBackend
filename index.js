@@ -29,6 +29,13 @@ app.use('/questions', adminQueistion)
 app.use('/test', testUser);
 app.use('/foydalanuvchi', users);
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://testbotfrontend-2.onrender.com");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+
 // app.use(express.static(path.join(__dirname, '/frontend/dist')))
 
 // app.get('*', (req, res) =>res.sendFile(__dirname, '/frontend/dist/index.html'))
