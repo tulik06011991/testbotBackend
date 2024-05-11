@@ -22,7 +22,11 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Headers", "*");
   next();
 });
-app.use(cors())
+app.use(cors({
+  origin: ['https://main--singular-pastelito-b428f6.netlify.app', 'http://localhost:5173'],
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 
 
 
