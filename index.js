@@ -26,7 +26,10 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Headers", "*");
   next();
 });
-app.use(cors())
+app.use(cors({
+  origin: 'https://6641049382f5fefcc1049ec8--keen-boba-9656b3.netlify.app',
+  credentials: true
+}));
 
 
 // }));app.use(cors({
