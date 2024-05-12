@@ -1,0 +1,18 @@
+
+services:
+- type: web
+  name: testbotBackend-24
+  runtime: node
+  repo: https://github.com/tulik06011991/testbotBackend
+  plan: free
+  envVars:
+  - key: JWT_SECRET
+    sync: false
+  - key: PORT
+    sync: false
+  - key: MONGO_URL
+    sync: false
+  region: singapore
+  buildCommand: npm install
+  startCommand: node index.js
+version: "1"
