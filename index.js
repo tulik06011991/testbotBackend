@@ -10,7 +10,7 @@ const users = require('./Routes/UserRoutes')
 const path = require('path')
 
 
-// console.log(__dirname)
+ console.log(__dirname)
 
 
 const app = express();
@@ -42,6 +42,7 @@ app.use('/questions', adminQueistion)
 app.use('/test', testUser);
 app.use('/foydalanuvchi', users);
 
+<<<<<<< HEAD
 
 
 // app.use(express.static(path.join(__dirname, '/frontend/dist')))
@@ -52,6 +53,13 @@ app.get("/" , (req, res) =>{
 })
 MONGO_URL = 'mongodb+srv://tolqinmirsaliyev:baliq06011991@cluster0.3ewxg9n.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0'
 mongoose.connect(MONGO_URL)
+=======
+ app.use(express.static(path.join(__dirname, '/frontend/dist')))
+
+app.get('*', (req, res) =>res.sendFile(__dirname, '/frontend/dist/index.html'))
+
+mongoose.connect(process.env.MONGO_URL)
+>>>>>>> dd377dac0165018825daffd003acd6f966c2dcf9
   .then(() => console.log('MongoDBga muvaffaqiyatli ulanish'))
   .catch((error) => console.error('MongoDBga ulanishda xatolik:', error));
 
