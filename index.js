@@ -26,11 +26,7 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Headers", "*");
   next();
 });
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Vergul qo'shilgan
-  headers: ['Content-Type', 'Authorization'] // "allowedHeaders" o'rniga "headers"
-}));
+app.use(cors())
 
 
 
