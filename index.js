@@ -19,13 +19,7 @@ const app = express();
 
 
 app.use(express.json());
-app.use((req, res, next) => {
-  res.setHeader("Content-Type", "application/json");
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "OPTIONS, GET, PUT, POST, DELETE"); // Vergul qo'shilgan
-  res.setHeader("Access-Control-Allow-Headers", "*");
-  next();
-});
+
 app.use(cors({
   origin: 'https://mirsaliyev-tulqin01.netlify.app',
   credentials: true
