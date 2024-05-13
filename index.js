@@ -27,7 +27,7 @@ app.use((req, res, next) => {
   next();
 });
 app.use(cors({
-  origin: 'https://6641049382f5fefcc1049ec8--keen-boba-9656b3.netlify.app',
+  origin: 'https://mirsaliyev_tulqin.netlify.app',
   credentials: true
 }));
 
