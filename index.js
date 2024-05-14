@@ -17,7 +17,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: 'https://mirsaliyev-tulqin06.netlify.app',
+  origin: 'https://mirsaliyev-tulqin07.netlify.app',
   credentials: true
 }));
 
