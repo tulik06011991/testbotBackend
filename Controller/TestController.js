@@ -1,14 +1,11 @@
 const Question = require('../Model/TestModel');
-
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const TestModel = require('../Model/UserModel');
 console.log(TestModel)
 
 
 const QuestionGet = async (req, res) => {
   try {
-    const questions = await Question.find().lean().limit(40); // Misol uchun, faqat 10ta savolni olish
+    const questions = await Question.find()// Misol uchun, faqat 10ta savolni olish
     res.json(questions);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -24,7 +21,7 @@ const UserAnswerPost = async (req, res) => {
     const userResults = await TestModel.find({ userId });
 
     // Agar foydalanuvchi allaqachon 30 ta savolga javob berib bo'lsa, 403 HTTP status kodi bilan foydalanuvchiga xabar berish
-    if (userResults.length >=30) {
+    if (userResults.length >= 30) {
       return res.status(403).json({ error: 'Siz allaqachon 30 ta savolga javob berdingiz' });
     }
 
@@ -67,6 +64,9 @@ const UserAnswerPost = async (req, res) => {
 };
 
 
+
+
+
 // Barcha ma'lumotlarni o'chirish
 const deleteAnswers =  (req, res) => {
   TestModel.deleteMany({})
@@ -106,18 +106,6 @@ const deleteAnswersId = (req, res) => {
     });
 };
 
-// const deleteQuestionsId = (req, res) => {
-//   const userId = req.params.userId; // Foydalanuvchi identifikatori
-//   Question.deleteMany({ userId: userId }) // userId bo'yicha savollarni o'chiramiz
-//     .then(() => {
-//       console.log(`Foydalanuvchi ${userId} savollari muvaffaqiyatli o'chirildi`);
-//       res.status(200).json({ message: `Foydalanuvchi ${userId} savollari muvaffaqiyatli o'chirildi` });
-//     })
-//     .catch((err) => {
-//       console.error('Savollarni o\'chirishda xatolik:', err);
-//       res.status(500).json({ error: 'Server xatosi, savollarni o\'chirish muvaffaqiyatli o\'chirilmadi' });
-//     });
-// };
 
 
 
