@@ -12,7 +12,6 @@ const QuestionGet = async (req, res) => {
   }
 };
 
-// Foydalanuvchi savolga javob berish va natijalarni hisoblash
 const UserAnswerPost = async (req, res) => {
   try {
     const { userId, questionId, userAnswer } = req.body;
@@ -33,8 +32,6 @@ const UserAnswerPost = async (req, res) => {
     }
 
     // Foydalanuvchi javobini tekshirish
-
-    // Agar foydalanuvchi savol variantlaridan birini tanlamagan bo'lsa, 404 HTTP status kodi bilan foydalanuvchiga xabar berish
     if (userAnswer === null || userAnswer.length === 0) {
       return res.status(404).json({ error: 'Foydalanuvchi hech bir variantni tanlamagan' });
     }
@@ -49,19 +46,27 @@ const UserAnswerPost = async (req, res) => {
       correct: isCorrect
     });
 
-    // Barcha savollarga to'g'ri javob berilganda, tekshirish natijasini qaytarish
-    const correctCount = userResults.filter(result => result.correct).length;
+    // Asinxron natijalarni hisoblash
+    process.nextTick(async () => {
+      try {
+        const allResults = await TestModel.find({ userId });
+        const correctCount = allResults.filter(result => result.correct).length;
+        const userScore = (correctCount / allResults.length) * 100;
 
-    // Foydalanuvchi umumiy ballarini hisoblash
-    const userScore = (correctCount / userResults.length) * 100;
+        // Yangilangan natijalarni saqlash yoki qaytarish lozim bo'lsa
+        console.log({ totalQuestions: allResults.length, correctCount, userScore });
+      } catch (error) {
+        console.error('Xatolik:', error);
+      }
+    });
 
-    // Natijalarni qaytarish
-    res.json({ totalQuestions: userResults.length, correctCount, userScore });
+    res.status(200).json({ message: 'Javob qabul qilindi' });
   } catch (error) {
     console.error('Xatolik:', error);
     res.status(500).json({ error: error.message });
   }
 };
+
 
 
 
