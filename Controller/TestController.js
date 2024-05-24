@@ -19,6 +19,17 @@ const UserAnswerPost = async (req, res) => {
     // Foydalanuvchi test ishlaganini tekshirish
     const userResults = await TestModel.find({ userId });
 
+    
+    // if (userResults.length > 0) {
+    //   const firstTestTime = moment(userResults[0].createdAt);
+    //   const currentTime = moment();
+    //   const duration = moment.duration(currentTime.diff(firstTestTime));
+
+    //   if (duration.asMinutes() > 60) {
+    //     return res.status(403).json({ error: 'Test muddati tugadi. 60 daqiqadan oshdi.' });
+    //   }
+    // }
+
     // Agar foydalanuvchi allaqachon 30 ta savolga javob berib bo'lsa, 403 HTTP status kodi bilan foydalanuvchiga xabar berish
     if (userResults.length >= 30) {
       return res.status(403).json({ error: 'Siz allaqachon 30 ta savolga javob berdingiz' });
