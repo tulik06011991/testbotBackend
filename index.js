@@ -36,7 +36,7 @@ app.use('/foydalanuvchi', users);
 app.get("/" , (req, res) =>{
   res.send('hello')
 })
-MONGO_URL = 'mongodb+srv://tolqinmirsaliyev:baliq06011991@cluster0.3ewxg9n.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0'
+MONGO_URL = 'mongodb+srv://tolqinmirsaliyev:baliq06011991@cluster0.3ewxg9n.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 mongoose.connect(MONGO_URL)
 
 
